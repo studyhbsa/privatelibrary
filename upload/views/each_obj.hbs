@@ -1,0 +1,14 @@
+<pre>
+obj = {
+    {{#each obj}}
+        {{#if @last}}
+  {{{@key}}}: '{{{this}}}'
+        {{else}}
+  {{{@key}}}: '{{{this}}}',
+        {{/if}}
+    {{/each}}
+}
+</pre>
+
+
+
