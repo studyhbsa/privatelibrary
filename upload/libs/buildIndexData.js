@@ -75,5 +75,19 @@ module.exports = {
         }
         walkSync(publicPath, 0, handFile)
         return fileArray
+    },
+    getHtmlTitleFromPbulic: function () {
+        var publicPath = fspath.join(process.cwd(), 'public')
+        var fileArray = []
+        var handFile = function (path, floor) {
+            if ((/\.(html)$/i).test(path)) {
+                var matchTag = (/<(title>)(.*?)<\/\1/i).exec(fs.readFileSync(path).toString())
+                var title = matchTag[2]
+                var url = '.' + path.slice(publicPath.length).replace(/\\/g, '/')
+                fileArray.push({title:title,url:url})
+            }
+        }
+        walkSync(publicPath, 0, handFile)
+        return fileArray
     }
 }
