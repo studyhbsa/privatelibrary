@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-{{#htmls}}
+{{#each htmls}}
     {{@index}} <a href="{{this.url}}">{{this.title}}</a><br>
-{{/htmls}}
+{{/each}}
