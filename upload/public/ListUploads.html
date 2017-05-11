@@ -39,8 +39,8 @@
         text = text.slice(0, text.length - 1)
         var beg = text.lastIndexOf(' ')
         var id = text.slice(beg+1, text.length)
-        window.open("/openfile?filename=" + id, "_blank", "top=100,left=100,width=800,height=600,menubar=no,scrollbars=no,toolbar=no,status=no,location=no");
-        //window.open("/openfile?filename=" + id, "_blank")
+        //window.open("/openfile?filename=" + id, "_blank", "top=100,left=100,width=800,height=600,menubar=no,scrollbars=no,toolbar=no,status=no,location=no");
+        window.open("/openfile?filename=" + id+"#page=2", "_blank")
     }
 </script>
 </body>
