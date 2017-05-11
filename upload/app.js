@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var file_upload = require('./routes/file_upload');
+var openfile = require('./routes/openfile');
 
 var app = express();
 
@@ -22,10 +23,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
+/*app.get('/', function(req, res){
+  //
+  //res.set('Content-Type', 'application/pdf');
+  //res.attachment('4c57799abca7ced270821f75a9e2718c.pdf');
+  //res.end('none')
+  res.type('application/pdf')
+  res.sendFile(process.cwd() + '/uploads/4c57799abca7ced270821f75a9e2718c')
+})*/
 app.use('/', routes);
 app.use('/users', users);
 app.use('/file_upload', file_upload);
+app.use('/openfile', openfile);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
