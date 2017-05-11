@@ -8,6 +8,11 @@ obj = {
         {{/if}}
     {{/each}}
 }
+
+ count = {{rows.length}}
+    {{#each rows}}
+【{{@index}}】{{#each this}}{{#if @first}}{{/if}}{{{this}}}{{#if @last}}{{else}}, {{/if}}{{/each}}
+    {{/each}}
 </pre>
 
 
