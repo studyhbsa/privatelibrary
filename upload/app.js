@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var file_upload = require('./routes/file_upload');
 var openfile = require('./routes/openfile');
+var getdata = require('./routes/getdata');
 
 var app = express();
 
@@ -33,10 +34,12 @@ app.use(express.static(path.join(__dirname, 'uploads')));
   res.type('application/pdf')
   res.sendFile(process.cwd() + '/uploads/4c57799abca7ced270821f75a9e2718c')
 })*/
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/file_upload', file_upload);
 app.use('/openfile', openfile);
+app.use('/getdata', getdata);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

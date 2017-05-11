@@ -27,14 +27,27 @@ var operations = {
     },
     'GET': function (db, evn, fn) {
         //text类型应该用""括起来
-        db.all(this.sqlSelect, evn.id, function (err, rows) {
-            if (err) {
-                console.warn(err);
-                fn(err);
-            } else {
-                fn(null, rows);
-            }
-        });
+        if(evn){
+            var sqlSelect = 'select * from uploads where filename=?'
+            db.all(sqlSelect, evn.filename, function (err, rows) {
+                if (err) {
+                    console.warn(err);
+                    fn(err);
+                } else {
+                    fn(null, rows);
+                }
+            });
+        }else{
+            var sqlSelect = 'select time,filename,originalname from uploads order by id desc'
+            db.all(sqlSelect, function (err, rows) {
+                if (err) {
+                    console.warn(err);
+                    fn(err);
+                } else {
+                    fn(null, rows);
+                }
+            });
+        }
     },
     'PUT': function (db, evn, fn) {
         //为了保险起见，手动设置单引号
