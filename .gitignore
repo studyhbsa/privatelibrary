@@ -35,3 +35,7 @@ npm-debug.log
 # upload directory
 uploads
 
+# bin directory
+upload/bin/sqlite3.exe
+upload/bin/uploads.db
+
