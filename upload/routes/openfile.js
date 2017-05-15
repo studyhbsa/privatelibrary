@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
                 var row = data[0]
                 if((/\.(pdf|ico|jpg|png)$/i).test(row.originalname)){
                     res.type(row.mimetype)
-                    fs.readFile(process.cwd() + '/uploads/' + filename, function(err, data){
+                    fs.readFile(process.cwd() + '/md5files/' + filename, function(err, data){
                         if(err){
                             console.warn(err)
                             return
@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
                         }
                     })
                 }else{
-                    res.download(process.cwd() + '/uploads/' + filename,row.originalname)
+                    res.download(process.cwd() + '/md5files/' + filename, row.originalname)
                 }
             }else{
                 res.end('记录不存在！')

@@ -70,7 +70,7 @@ function mainproc(req, res, next){
     var obj = {
         originalname: reqfile.originalname,
         mimetype: reqfile.mimetype,
-        filename: reqfile.filename,
+        filename: req.md5,
         size: reqfile.size
     }
 
@@ -92,9 +92,17 @@ function mainproc(req, res, next){
                 if(reqfile.mimetype.slice(reqfile.mimetype.length-4)=='/pdf'){
                     exec('python '+process.cwd()+'/bin/msgpdf.py '+md5file,function (suberror, substdout, substderr){
                         testtime.t4 = timetick()
+                        if(substdout.length == 0||substdout.charAt(0)!='{'){
+                            console.log('not exitst outlines')
+                        }else{
+                            try{
+                                var outlines = JSON.parse(substdout)
+                                console.log(outlines)
+                            }catch (e){
+                                console.log('error:\n', substdout)
+                            }
+                        }
 
-                        var outlines = JSON.parse(substdout)
-                        console.log(outlines)
                         printtime()
                         objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
                         fs.unlink(srcfile)
@@ -111,72 +119,5 @@ function mainproc(req, res, next){
         }
     })
 }
-
-
-
-
-/*router.post('/', upload.single('avatar'), function(req, res, next) {
-    testtime.t2 = timetick()
-    var reqfile = req.file
-    var obj = {
-        originalname: reqfile.originalname,
-        mimetype: reqfile.mimetype,
-        filename: reqfile.filename,
-        size: reqfile.size
-    }
-    //回调处理
-    var fn = function (err, data) {
-        if (err) {
-            var errObj = _.omitBy(err, _.isFunction);
-            errObj.message = err.message;
-            res.status(404).json(errObj);
-            return;
-        } else {
-            //这里的data,可能是一个对象{id:xxx,object:array}
-            //res.jsonp(rows);
-            res.render('each_obj', {obj: obj,rows:data.object});
-        }
-    }
-    //计算md5,写绝对路径比较好
-    var filepath = process.cwd()+'/uploads/'+reqfile.filename
-    exec('certutil -hashfile "'+filepath+'" MD5', function(error, stdout, stderr) {
-        testtime.t3 = timetick()
-        var md5 = (stdout.split(/\r?\n/)[1]).replace(/\s/g,'')
-        //console.log('md5:', md5)
-
-        var md5file = process.cwd()+'/md5files/'+md5
-        //查询是否已经存在
-        fs.exists(md5file, function(exists){
-            if(!exists){
-                //console.log('不存在，拷贝 & 计算')
-                //不存在，拷贝
-                readable = fs.createReadStream(filepath);
-                writable = fs.createWriteStream(md5file);
-                readable.pipe( writable ,{end:false});
-                readable.on('end', function(){
-                    testtime.t4 = timetick()
-                    fs.unlink(filepath)
-                    //如果是pdf,提取outlines
-                    if(reqfile.mimetype.slice(reqfile.mimetype.length-4)=='/pdf'){
-                        console.log('调用msgpdf.py')
-                        exec('python '+process.cwd()+'/bin/msgpdf.py '+md5file,function (suberror, substdout, substderr){
-                            testtime.t5 = timetick()
-                            var outlines = substdout    //JSON.parse(substdout)
-                            //console.log(outlines)
-                            objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
-                        })
-                    }else{
-                        objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
-                    }
-                })
-            }
-            else {
-                console.log('已存在')
-                objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
-                fs.unlink(filepath)
-            }
-        })
-    })
-})*/
 
 module.exports = router;
