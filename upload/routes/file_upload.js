@@ -42,13 +42,6 @@ router.use(function(req,res,next){
 
 router.post('/', upload.single('avatar'), buildmd5, mainproc)
 
-function post(req, res, next) {
-    testtime.t0 = timetick()
-    upload.single('avatar')
-    //middleware: req.file
-    //next()
-}
-
 function buildmd5(req, res, next) {
     testtime.t1 = timetick()
     var srcfile = process.cwd()+'/uploads/'+req.file.filename
@@ -61,7 +54,6 @@ function buildmd5(req, res, next) {
 }
 
 function mainproc(req, res, next){
-    testtime.t3 = timetick()
     function fn(err, data) {
         if (err) {
             var errObj = _.omitBy(err, _.isFunction);
@@ -88,6 +80,7 @@ function mainproc(req, res, next){
 
     fs.exists(md5file, function(exists){
         if(exists){
+            printtime()
             objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
             fs.unlink(srcfile)
             return
@@ -95,21 +88,25 @@ function mainproc(req, res, next){
             var readstream = fs.createReadStream(srcfile)
             var writestream = fs.createWriteStream(md5file)
             readstream.on('end', function () {
-                testtime.t4 = timetick()
+                testtime.t3 = timetick()
                 if(reqfile.mimetype.slice(reqfile.mimetype.length-4)=='/pdf'){
                     exec('python '+process.cwd()+'/bin/msgpdf.py '+md5file,function (suberror, substdout, substderr){
-                        testtime.t5 = timetick()
-                        fs.unlink(srcfile)
+                        testtime.t4 = timetick()
+
                         var outlines = JSON.parse(substdout)
                         console.log(outlines)
+                        printtime()
                         objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
+                        fs.unlink(srcfile)
                     })
                 }else{
-                    fs.unlink(srcfile)
+
+                    printtime()
                     objectop(req.method, dbmsg, {obj:obj,id:0}, fn)
+                    fs.unlink(srcfile)
                 }
             })
-            readstream.pipe(writestream, {end: false})
+            readstream.pipe(writestream, {end: true})
             return
         }
     })
