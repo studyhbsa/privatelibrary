@@ -50,7 +50,7 @@ def dumpoutlinejson(outfp, fname, objids, pagenos, password='',
                     subtype = action.get('S')
                     if subtype and repr(subtype) == '/GoTo' and action.get('D'):
                         dest = resolve_dest(action['D'])
-                        if not pages.has_key(dest[0].objid):
+                        if not pages.has_key(dest[0].objid) or pages[dest[0].objid] == 0:
                             step += 1
                             pageno = step
                             adjuststep = True
@@ -59,15 +59,17 @@ def dumpoutlinejson(outfp, fname, objids, pagenos, password='',
                             else: pageno = pages[dest[0].objid]
             s = e(title).encode('utf-8', 'xmlcharrefreplace')
             if writeonlyonce:
-                writeonlyonce = False
+                #writeonlyonce = False
                 outfp.write('{"adjuststep":"%r"' % adjuststep)
                 outfp.write(',"skippageno":"%r"' % step)
                 outfp.write(',"outlines":[')
 
+            if not writeonlyonce: outfp.write(',')
             outfp.write('{"l":"%r","t":"%s"' % (level, s))
             if pageno is not None:
                 outfp.write(',"n":"%r"' % pageno)
-            outfp.write('},')
+            outfp.write('}')
+            if writeonlyonce: writeonlyonce = False
         outfp.write(']}\n')
     except PDFNoOutlines:
         pass
