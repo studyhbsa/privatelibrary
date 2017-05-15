@@ -32,10 +32,13 @@ npm-debug.log
 # WebStorm configuration
 .idea
 
-# upload directory
+# uploads directory
 uploads
 
 # bin directory
 upload/bin/sqlite3.exe
 upload/bin/uploads.db
+
+# md5files directory
+md5files
 
