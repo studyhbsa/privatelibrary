@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var package = require('./package.json')
 require('./libs/db').startdb(package.dbfile)
 
+
+
 var app = express();
 
 // view engine setup
@@ -31,6 +33,20 @@ app.use('/pass', function(req, res, next){
   var pass = req.session.obj || {baseUrl:req.baseUrl,originalUrl:req.originalUrl}
   res.json(pass)
 })
+
+setTimeout(function(){
+  console.log('--测试 arrmd5obj--')
+  var directory = 'E:\\temp\\files'
+  var arr = require('./libs/md5file').arrmd5obj(directory,/\.\w+$/i)
+  console.log(arr)
+},500)
+
+setTimeout(function(){
+  console.log('--测试 tablemd5obj--')
+  var directory = 'E:\\temp\\files'
+  require('./libs/md5file').tablemd5obj(directory,/\.\w+$/i,'md5file1',true)
+
+},500)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
