@@ -24,7 +24,7 @@ function arrmd5obj(directory, filematch) {
                 path: filepath,
                 size: info.size,
             })
-        }
+        }else{console.log(filepath)}
     })
     return arr
 }
@@ -55,12 +55,12 @@ function walkSync(fileordirectory, floor, handleFile) {
     handleFile(fileordirectory, floor);
     floor++;
     var files = fs.readdirSync(fileordirectory)
-    files.forEach(function(item){
+    files.forEach(function (item) {
         var tmpPath = path.join(fileordirectory, item)
         var info = fs.statSync(tmpPath)
-        if(info.isDirectory()){
+        if (info.isDirectory()) {
             walkSync(tmpPath, floor, handleFile)
-        }else{
+        } else if (info.isFile()) {
             handleFile(tmpPath, floor, info)
         }
     })

@@ -44,7 +44,7 @@ app.use('/pass', function(req, res, next){
 setTimeout(function(){
   console.log('--测试 tablemd5obj--')
   var directory = 'Q:\\BaiduYunDownload'
-  require('./libs/md5file').tablemd5obj(directory,/[\w_$]+\.\w+$/i,'md5file1',true)
+  require('./libs/md5file').tablemd5obj(directory,/[^\/\\]\.\w+$/,'md5file1',true)
 
 },500)
 
