@@ -34,17 +34,17 @@ app.use('/pass', function(req, res, next){
   res.json(pass)
 })
 
-setTimeout(function(){
+/*setTimeout(function(){
   console.log('--测试 arrmd5obj--')
   var directory = 'E:\\temp\\files'
-  var arr = require('./libs/md5file').arrmd5obj(directory,/\.\w+$/i)
+  var arr = require('./libs/md5file').arrmd5obj(directory,/[\w_$]+\.\w+$/i)
   console.log(arr)
-},500)
+},500)*/
 
 setTimeout(function(){
   console.log('--测试 tablemd5obj--')
-  var directory = 'E:\\temp\\files'
-  require('./libs/md5file').tablemd5obj(directory,/\.\w+$/i,'md5file1',true)
+  var directory = 'Q:\\BaiduYunDownload'
+  require('./libs/md5file').tablemd5obj(directory,/[\w_$]+\.\w+$/i,'md5file1',true)
 
 },500)
 

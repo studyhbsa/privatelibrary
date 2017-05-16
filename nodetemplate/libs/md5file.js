@@ -30,6 +30,8 @@ function arrmd5obj(directory, filematch) {
 }
 
 function tablemd5obj(directory, filematch, tablename, clearall) {
+    var testspan = {}
+    testspan.t0 = process.uptime() * 1000
     var arr = exports.arrmd5obj(directory, filematch)
 
     var db = process.db
@@ -42,7 +44,10 @@ function tablemd5obj(directory, filematch, tablename, clearall) {
             var obj = arr[i]
             stmt.run(obj.md5key, obj.path, obj.size)
         }
-        stmt.finalize()
+        stmt.finalize(function () {
+            testspan.t1 = process.uptime() * 1000
+            console.log('tablemd5obj finish, time(s):', testspan.t1 - testspan.t0)
+        })
     })
 }
 
