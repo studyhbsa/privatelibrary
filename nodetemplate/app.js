@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var package = require('./package.json')
+require('./libs/db').startdb(package.dbfile)
+
 var app = express();
 
 // view engine setup
@@ -24,6 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/pass', function(req, res, next){
+  var pass = req.session.obj || {baseUrl:req.baseUrl,originalUrl:req.originalUrl}
+  res.json(pass)
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
