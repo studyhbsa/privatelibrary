@@ -41,12 +41,16 @@ app.use('/pass', function(req, res, next){
   console.log(arr)
 },500)*/
 
-setTimeout(function(){
+/*setTimeout(function(){
   console.log('--测试 tablemd5obj--')
   var directory = 'Q:\\BaiduYunDownload'
   require('./libs/md5file').tablemd5obj(directory,/[^\/\\]\.\w+$/,'md5file1',true)
+},500)*/
 
-},500)
+setTimeout(function(){
+  console.log('--测试 updateoutlines--')
+  require('./libs/msg').updateoutlines('md5file1')
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

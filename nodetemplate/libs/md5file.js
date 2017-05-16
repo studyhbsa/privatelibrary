@@ -24,7 +24,7 @@ function arrmd5obj(directory, filematch) {
                 path: filepath,
                 size: info.size,
             })
-        }else{console.log(filepath)}
+        }//else{console.log(filepath)}
     })
     return arr
 }

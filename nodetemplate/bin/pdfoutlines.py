@@ -91,9 +91,11 @@ def main(argv):
     outfp = sys.stdout
     extractdir = None
 
-    dumpoutlinejson(outfp, argv[1], objids, pagenos, password=password,
-         dumpall=dumpall, codec=codec, extractdir=extractdir)
-
+    try:
+        dumpoutlinejson(outfp, argv[1], objids, pagenos, password=password,
+             dumpall=dumpall, codec=codec, extractdir=extractdir)
+    except Exception:
+        pass
     return
 
 if __name__ == '__main__': sys.exit(main(sys.argv))
