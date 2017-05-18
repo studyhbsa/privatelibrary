@@ -10,6 +10,9 @@ var users = require('./routes/users');
 
 var package = require('./package.json')
 require('./libs/db').startdb(package.dbfile)
+process.data = package.data
+
+var file = require('./routes/file')
 
 
 
@@ -27,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/file', file)
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/pass', function(req, res, next){
@@ -41,16 +46,34 @@ app.use('/pass', function(req, res, next){
   console.log(arr)
 },500)*/
 
-/*setTimeout(function(){
+/*setTimeout(function() {
   console.log('--测试 tablemd5obj--')
-  var directory = 'Q:\\BaiduYunDownload'
-  require('./libs/md5file').tablemd5obj(directory,/[^\/\\]\.\w+$/,'md5file1',true)
+
+  if(false){
+    var table = 'book_test'
+    var directory = 'E:\\fixed\\privatelibrary\\dbs\\pdf'
+  }else{
+    var table = 'book_zhbkx'
+    var directory = 'V:\\PDF'
+  }
+
+  var t0 = Date.now()
+  require('./libs/md5file').tablemd5obj(directory, /[^\/\\]\.pdf$/i, table, true)
+  var t1 = Date.now()
+  console.log('已运行时间:', t1 - t0)
 },500)*/
 
-setTimeout(function(){
+/*setTimeout(function(){
   console.log('--测试 updateoutlines--')
-  require('./libs/msg').updateoutlines('md5file1')
-})
+  if(true){
+    var table = 'book_zhbkx'
+  }else {
+    var table = 'book_sjjd'
+  }
+  require('./libs/msg').updateoutlines(table)
+})*/
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

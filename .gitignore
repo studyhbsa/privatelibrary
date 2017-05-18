@@ -42,3 +42,6 @@ upload/bin/uploads.db
 # md5files directory
 md5files
 
+# dbs directory
+dbs
+

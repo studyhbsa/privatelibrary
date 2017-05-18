@@ -2,7 +2,11 @@
   "name": "nodetemplate",
   "version": "0.0.0",
   "private": true,
-  "dbfile": "../dbs/step1.db",
+  "dbfile": "../dbs/book.db",
+  "data": {
+    "fileroot": "d:\\all",
+    "canopen": ["pdf","jpg","png","ico"]
+  },
   "scripts": {
     "start": "node ./bin/www"
   },

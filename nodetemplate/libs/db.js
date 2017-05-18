@@ -7,12 +7,20 @@
 var sqlite3 = require('sqlite3').verbose()
 var staticsqls = [
     //md5file(id,md5key,path,size,msg,time)
-    "create table if not exists md5file(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists md5file1(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists md5file2(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists md5file3(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists md5file4(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists md5file5(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book_sjjd(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book_zhbks(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book_zhbkx(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+
+    /*
+    "create table if not exists book02(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book03(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book04(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book05(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book06(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book07(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book08(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+    "create table if not exists book09(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
+*/
 
 ]
 

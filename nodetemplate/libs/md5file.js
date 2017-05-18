@@ -6,6 +6,7 @@
 
 var fs = require('fs')
 var path = require('path')
+var _ = require('lodash')
 var exec = require('child_process').execSync
 
 
@@ -31,22 +32,27 @@ function arrmd5obj(directory, filematch) {
 
 function tablemd5obj(directory, filematch, tablename, clearall) {
     var testspan = {}
-    testspan.t0 = process.uptime() * 1000
+    testspan.t0 = Date.now()
     var arr = exports.arrmd5obj(directory, filematch)
+    testspan.t1 = Date.now()
 
+    //var sql = 'PRAGMA foreign_keys=OFF;BEGIN TRANSACTION;'
+    var sql = 'insert into ' + tablename + '(md5key,path,size) values'
+    sql += _.map(arr, function (v) {
+        return '(\'' + v.md5key + '\',\'' + v.path + '\',' + v.size + ')'
+    }).join(',')
+    sql += ';'
+    //sql += ';COMMIT;'
+    console.log(sql)
     var db = process.db
     db.serialize(function () {
-        if (clearall === true) {
-            db.run('delete from ' + tablename)
-        }
-        var stmt = db.prepare('insert into ' + tablename + '(md5key,path,size) values(?,?,?)')
-        for (var i = 0; i < arr.length; i++) {
-            var obj = arr[i]
-            stmt.run(obj.md5key, obj.path, obj.size)
-        }
-        stmt.finalize(function () {
-            testspan.t1 = process.uptime() * 1000
-            console.log('tablemd5obj finish, time(s):', testspan.t1 - testspan.t0)
+        if (clearall === true) db.run('delete from ' + tablename)
+        db.run(sql, function (err) {
+            testspan.t2 = Date.now()
+            console.log('[计算(md5,size):', testspan.t1 - testspan.t0,
+                '][存库:', testspan.t2 - testspan.t1, '][', directory + ']')
+            if (err) console.warn(err)
+            console.log(arguments)
         })
     })
 }
