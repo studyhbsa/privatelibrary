@@ -96,6 +96,8 @@ function mainproc(req, res, next){
                             console.log('not exitst outlines')
                         }else{
                             try{
+                                //&#13;&#10; 替换成空格
+                                substdout = substdout.replace(/(&#1\d;)+/g,' ')
                                 var outlines = JSON.parse(substdout)
                                 console.log(outlines)
                             }catch (e){
