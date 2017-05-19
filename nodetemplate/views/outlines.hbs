@@ -10,21 +10,30 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>pageno</th>
-                    <th>level</th>
-                    <th>title</th>
+                    <th>Next</th>
+                    <th><input class="edit" spellcheck="false" type="text" value="{{{title}}}"></th>
+                    <!--<th>pageno</th>
+                    <th>level</th>-->
                 </tr>
             </thead>
             <tbody>
             {{#each rows}}
                 <tr>
-                    <th scope="row">{{@index}}</th>
-                    <td>{{n}}</td>
-                    <td>{{l}}</td>
-                    <td><input class="edit" spellcheck="false" type="text" value="{{{t}}}"></td>
+                    <th scope="row" id="{{@index}}">{{@index}}</th>
+                    <!--<td><a href="#34">Next</a></td>-->
+                    <td><input type="button" value="Hide" onclick="location_next(this)"></td>
+                    <td style="padding-left: {{l}}em;"><input class="edit" spellcheck="false" type="text" value="{{{t}}}"></td>
+                    <!--<td>{{!n}}</td>
+                    <td>{{!l}}</td>-->
                 </tr>
             {{/each}}
             </tbody>
         </table>
+
+    <script>
+        function location_next(self){
+            console.log(self)
+        }
+    </script>
     </body>
 </html>
