@@ -6,5 +6,13 @@
   </head>
   <body>
     {{{body}}}
+  <script>
+      function file(key, page) {
+          //window.open("/openfile?filename=" + id, "_blank", "top=100,left=100,width=800,height=600,menubar=no,scrollbars=no,toolbar=no,status=no,location=no");
+          //window.open("/openfile?filename=" + id+"#page=2", "_blank")
+          var win = window.open('/file/' + key + '?#page=' + page, key)
+          //win.location.reload(true)
+      }
+  </script>
   </body>
 </html>

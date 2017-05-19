@@ -13,6 +13,8 @@ require('./libs/db').startdb(package.dbfile)
 process.data = package.data
 
 var file = require('./routes/file')
+var json = require('./routes/json')
+var html = require('./routes/html')
 
 
 
@@ -31,6 +33,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/file', file)
+app.use('/json', json)
+app.use('/html', html)
 
 app.use('/', routes);
 app.use('/users', users);

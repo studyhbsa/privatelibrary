@@ -1,0 +1,14 @@
+{{id}}<br>
+{{path}}<br>
+{{size}}<br>
+{{time}}<br>
+<br>
+{{#with msg}}
+    校验:{{adjuststep}},基础页码:{{skippageno}}<br>
+    {{#each outlines}}
+        {{@index}}，{{#with this}}
+            {{l}},{{n}}
+            <a href="#" onclick="file('{{../../md5key}}',{{#if n}}{{n}}{{else}}1{{/if}})">{{{t}}}</a>
+        {{/with}}<br>
+    {{/each}}
+{{/with}}<br>
