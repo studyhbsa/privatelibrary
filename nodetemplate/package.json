@@ -2,7 +2,7 @@
   "name": "nodetemplate",
   "version": "0.0.0",
   "private": true,
-  "dbfile": "../dbs/book.db",
+  "dbfile": "./bin/book.db",
   "data": {
     "fileroot": "d:\\all",
     "canopen": ["pdf","jpg","png","ico"]
