@@ -1,8 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+html{-webkit-box-sizing:border-box;box-sizing:border-box}
+html{-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:transparent}
+body{margin:0}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/stylesheets/editobject.css">
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>pageno</th>
+                    <th>level</th>
+                    <th>title</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each rows}}
+                <tr>
+                    <th scope="row">{{@index}}</th>
+                    <td>{{n}}</td>
+                    <td>{{l}}</td>
+                    <td><input class="edit" spellcheck="false" type="text" value="{{{t}}}"></td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </body>
+</html>

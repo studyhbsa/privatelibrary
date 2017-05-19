@@ -1,0 +1,81 @@
+html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+html{-webkit-box-sizing:border-box;box-sizing:border-box}
+html{-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:transparent}
+body{margin:0}
+body,input{font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#292b2c;background-color:#fff}
+
+table{-webkit-box-sizing:border-box;box-sizing:border-box;border-collapse:collapse}
+table{width:100%;max-width:100%;margin-bottom:1rem}
+table{color:#fff;background-color:#292b2c;border:0}
+table tbody{border-top:2px solid #eceeef}
+table td,table th{padding:.3rem;border-color:#fff;border-top:1px solid #eceeef;vertical-align:top;text-align:left}
+
+/*.table-header thead th{color:green}*/
+table tbody th,table thead th:first-child{color:gray}
+.response-error{color: #bd2c00}
+.response-success{color:#6cc644}
+/*表格文本编辑用*/
+.edit{
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+}
+
+
+
+/*span的设置：和td一样，只是要加粗*/
+.console{color:#fff;background-color:#292b2c;border:0;padding:3px;cursor:text}
+.console span{padding:.3rem;vertical-align:top;text-align:center;font-size:1.2rem;display: inline-block}
+/*光标模拟用*/
+@-webkit-keyframes pulse{from{opacity:1}to{opacity: 0.25}}
+.console .cursor {
+    -webkit-animation: pulse 1s alternate infinite;
+    animation: pulse 1s alternate infinite;
+/*    background: #eacb60;
+    color: #555555;*/
+    background: #eacb60;
+    margin-left: -.3rem;
+    margin-right: -.3rem;
+    width: 0;
+/*    display: inline;*/
+}
+/*只能提示框*/
+.popzn {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    width: 300px;
+    height: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    _overflow: hidden;
+    box-shadow: 1px 1px 3px #ededed;
+    -webkit-box-shadow: 1px 1px 3px #ededed;
+    display: none;
+}
+.popzn ul{
+    margin: 0;
+    padding: 0;
+}
+.popzn li {
+    list-style: none;
+    display: list-item;
+    color: #000;
+    font: 14px arial;
+    line-height: 22px;
+    margin: 0;
+    padding: 0 8px;
+    position: relative;
+    cursor: default;
+}
+.popzn li:hover{
+    background-color: #f7f7f2;
+}
+.popzn li.sel{
+    background-color: #ededed;
+}
+
