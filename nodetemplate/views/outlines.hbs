@@ -11,24 +11,37 @@
                 <tr>
                     <th>#</th>
                     <th>Next</th>
-                    <th><input class="edit" value="{{{md5key}}}"></th>
+                    <th>Value</th>
                     <!--<th>pageno</th>
                     <th>level</th>-->
                 </tr>
             </thead>
             <tbody>
-            {{#each rows}}
+            {{#if rows}}
+                {{#each rows}}
+                    <tr>
+                        <th scope="row" id="{{@index}}">{{@index}}</th>
+                        <!--<td><a href="#34">Next</a></td>-->
+                        <td><input type="button" value="Hide" onclick="location_next(this)"></td>
+                        <td style="padding-left: {{l}}em;">
+                            <input class="edit" pair-key="{{@index}}" pair-value='{{{t}}}' value='{{{t}}}'>
+                        </td>
+                        <!--<td>{{!n}}</td>
+                    <td>{{!l}}</td>-->
+                    </tr>
+                {{/each}}
+            {{else}}
                 <tr>
-                    <th scope="row" id="{{@index}}">{{@index}}</th>
+                    <th scope="row" id="0">0</th>
                     <!--<td><a href="#34">Next</a></td>-->
                     <td><input type="button" value="Hide" onclick="location_next(this)"></td>
-                    <td style="padding-left: {{l}}em;">
-                        <input class="edit" pair-key="{{@index}}" pair-value="{{{t}}}" value='{{t}}'>
+                    <td style="padding-left: 1em;">
+                        <input class="edit" pair-key="-1" pair-value='未命名' value='未命名'>
                     </td>
                     <!--<td>{{!n}}</td>
                     <td>{{!l}}</td>-->
                 </tr>
-            {{/each}}
+            {{/if}}
             </tbody>
         </table>
         <script src="/javascripts/jquery.min.js"></script>
