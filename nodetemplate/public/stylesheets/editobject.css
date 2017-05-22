@@ -23,6 +23,8 @@ table tbody th,table thead th:first-child{color:gray}
     width: 100%;
     background-color: transparent;
     color: #fff;
+    spellcheck: false;
+    type: text;
 }
 
 

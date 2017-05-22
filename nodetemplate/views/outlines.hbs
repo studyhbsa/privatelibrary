@@ -6,12 +6,12 @@
         <link rel="stylesheet" href="/stylesheets/editobject.css">
     </head>
     <body>
-        <table>
+        <table md5key="{{{md5key}}}">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Next</th>
-                    <th><input class="edit" spellcheck="false" type="text" value="{{{title}}}"></th>
+                    <th><input class="edit" value="{{{md5key}}}"></th>
                     <!--<th>pageno</th>
                     <th>level</th>-->
                 </tr>
@@ -22,18 +22,17 @@
                     <th scope="row" id="{{@index}}">{{@index}}</th>
                     <!--<td><a href="#34">Next</a></td>-->
                     <td><input type="button" value="Hide" onclick="location_next(this)"></td>
-                    <td style="padding-left: {{l}}em;"><input class="edit" spellcheck="false" type="text" value="{{{t}}}"></td>
+                    <td style="padding-left: {{l}}em;">
+                        <input class="edit" pair-key="{{@index}}" pair-value="{{{t}}}" value='{{t}}'>
+                    </td>
                     <!--<td>{{!n}}</td>
                     <td>{{!l}}</td>-->
                 </tr>
             {{/each}}
             </tbody>
         </table>
-
-    <script>
-        function location_next(self){
-            console.log(self)
-        }
-    </script>
+        <script src="/javascripts/jquery.min.js"></script>
+        <script src="/javascripts/lodash.min.js"></script>
+        <script src="/javascripts/outlines.js"></script>
     </body>
 </html>

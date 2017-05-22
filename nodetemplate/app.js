@@ -16,6 +16,7 @@ var file = require('./routes/file')
 var json = require('./routes/json')
 var html = require('./routes/html')
 var outlines = require('./routes/outlines')
+var update = require('./routes/update')
 
 
 
@@ -37,6 +38,8 @@ app.use('/file', file)
 app.use('/json', json)
 app.use('/html', html)
 app.use('/outlines', outlines)
+app.use('/update', update)
+
 
 app.use('/', routes);
 app.use('/users', users);

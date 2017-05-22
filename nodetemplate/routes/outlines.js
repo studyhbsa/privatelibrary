@@ -33,7 +33,7 @@ function pushjson(req, res, next) {
     function success(row) {
         var obj = {
             layout: null,
-            title: row.md5key
+            md5key: row.md5key
         }
         try {
             //将 outlines 转对象
