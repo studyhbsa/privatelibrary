@@ -13,6 +13,30 @@
           var win = window.open('/file/' + key + '?#page=' + page, key)
           //win.location.reload(true)
       }
+      function directory(sub){
+          var link = document.getElementById('id-link');
+          if(link.checked === true){
+              window.location.href = '/directory/'+sub
+          }else{
+              var win = window.open('/directory/'+sub, sub)
+          }
+      }
+      function openoutlines(key){
+          var link = document.getElementById('id-link');
+          if(link.checked === true){
+              window.location.href = '/outlines/'+key
+          }else{
+              var win = window.open('/outlines/'+key, key)
+          }
+      }
+      function openfile(key){
+          var link = document.getElementById('id-link');
+          if(link.checked === true){
+              window.location.href = '/file/'+key
+          }else{
+              var win = window.open('/file/'+key, key)
+          }
+      }
   </script>
   </body>
 </html>

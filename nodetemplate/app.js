@@ -17,6 +17,7 @@ var json = require('./routes/json')
 var html = require('./routes/html')
 var outlines = require('./routes/outlines')
 var update = require('./routes/update')
+var directory = require('./routes/directory')
 
 
 
@@ -39,6 +40,7 @@ app.use('/json', json)
 app.use('/html', html)
 app.use('/outlines', outlines)
 app.use('/update', update)
+app.use('/directory', directory)
 
 
 app.use('/', routes);
@@ -50,7 +52,7 @@ app.use('/pass', function(req, res, next){
 
 /*setTimeout(function(){
   console.log('--测试 arrmd5obj--')
-  var directory = 'E:\\temp\\files'
+  var directory = 'D:\\all\\wcts'
   var arr = require('./libs/md5file').arrmd5obj(directory,/[\w_$]+\.\w+$/i)
   console.log(arr)
 },500)*/
@@ -62,12 +64,12 @@ app.use('/pass', function(req, res, next){
     var table = 'book_test'
     var directory = 'E:\\fixed\\privatelibrary\\dbs\\pdf'
   }else{
-    var table = 'book_zhbkx'
-    var directory = 'V:\\PDF'
+    var table = 'book_wcts'
+    var directory = 'D:\\all\\wcts'
   }
 
   var t0 = Date.now()
-  require('./libs/md5file').tablemd5obj(directory, /[^\/\\]\.pdf$/i, table, true)
+  require('./libs/md5file').tablemd5obj(directory, /[^\/\\]\.pdf$/i, table, false)
   var t1 = Date.now()
   console.log('已运行时间:', t1 - t0)
 },500)*/
@@ -75,7 +77,7 @@ app.use('/pass', function(req, res, next){
 /*setTimeout(function(){
   console.log('--测试 updateoutlines--')
   if(true){
-    var table = 'book_zhbkx'
+    var table = 'book_wcts'
   }else {
     var table = 'book_sjjd'
   }

@@ -1,0 +1,5 @@
+<label style="position: fixed; right: 20px;"><input type="checkbox" checked id="id-link">Link</label>
+{{#each group}}
+    序号={{@index}} 分组={{@key}} 数量=<a href="#" onclick="directory('{{@key}}')">{{this.length}}</a><br>
+{{/each}}
+

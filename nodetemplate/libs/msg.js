@@ -58,7 +58,7 @@ function updateoutlines(tablename) {
     var db = process.db
     var sqlsel = 'select id,path from ' + tablename
         //' where path like \'%.pdf\''
-        //+' order by id limit 1500 offset 200;'
+        +' order by id limit 5000 offset 5000;'
     db.all(sqlsel, function (err, rows) {
         if(err){
             console.warn(err)

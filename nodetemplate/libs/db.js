@@ -7,10 +7,8 @@
 var sqlite3 = require('sqlite3').verbose()
 var staticsqls = [
     //md5file(id,md5key,path,size,msg,time)
-    "create table if not exists book_sjjd(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists book_zhbks(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
-    "create table if not exists book_zhbkx(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
     "create table if not exists log(id integer primary key autoincrement,md5key text,key text,old text,new text,time datetime default(datetime('now','localtime')))",
+//    "create table if not exists book_wcts(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",
 
     /*
     "create table if not exists book02(id integer primary key autoincrement,md5key text,path text,msg text,size integer,mimetype,time datetime default(datetime('now','localtime')))",

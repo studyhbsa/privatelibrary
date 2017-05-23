@@ -5,6 +5,7 @@
   "dbfile": "./bin/book.db",
   "data": {
     "fileroot": "d:\\all",
+    "pagecount": "15",
     "canopen": ["pdf","jpg","png","ico"]
   },
   "scripts": {
