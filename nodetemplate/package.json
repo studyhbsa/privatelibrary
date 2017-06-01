@@ -5,6 +5,7 @@
   "dbfile": "./bin/book.db",
   "data": {
     "fileroot": "d:\\all",
+    "replace": "&#183;·&#40;(&#41;)&#10;\n&#13;\r",
     "pagecount": "15",
     "canopen": ["pdf","jpg","png","ico"]
   },

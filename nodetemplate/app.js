@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var _ = require('lodash');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -18,7 +18,7 @@ var html = require('./routes/html')
 var outlines = require('./routes/outlines')
 var update = require('./routes/update')
 var directory = require('./routes/directory')
-
+var same = require('./routes/same')
 
 
 var app = express();
@@ -41,6 +41,7 @@ app.use('/html', html)
 app.use('/outlines', outlines)
 app.use('/update', update)
 app.use('/directory', directory)
+app.use('/same', same)
 
 
 app.use('/', routes);
@@ -84,6 +85,71 @@ app.use('/pass', function(req, res, next){
   require('./libs/msg').updateoutlines(table)
 })*/
 
+
+/*
+setTimeout(function(){
+  var db = process.db
+  var sql = [
+    'select json_extract(msg,\'$.outlines\') as title,count(*) as count',
+    ',group_concat(path) as paths',
+    ',group_concat(md5key) as md5keys',
+    ' from book where json_valid(msg)=1',
+    ' group by title having count=2 order by length(title),title'
+  ].join('')
+  db.all(sql, function(err,rows){
+    if(rows && rows.length>0){
+      console.log('count:', rows.length)
+      var cds = _.chain(rows)
+          .filter(function(v){
+            //仅限于 cd 类 和 book 类
+            return /cd|book/.test(v.paths)
+          })
+          .map(function(v){
+            //剔除第二项
+            return "('"+ v.md5keys.split(',')[1]+"')"
+          })
+          .value()
+          .join(',')
+      cds = cds + ';'
+      var sqlInsert = [
+          'begin transaction;',
+          'create table cd(md5key);',
+          'insert into cd(md5key) values'+cds,
+          'commit;'
+      ].join('')
+      db.exec(sqlInsert, function(err){
+        if(err){
+          console.warn(err)
+        }
+      })
+    }
+  })
+}, 1000)
+*/
+
+/*setTimeout(function(){
+  var msg = require('./libs/msg')
+  var files = [
+      'cd011\\ts011039.pdf',
+      'cd051\\ts051022.pdf',
+      'cd073\\ts073047.pdf',
+      'cd094\\ts094077.pdf',
+      'cd095\\ts095035.pdf',
+      'cd096\\ts096049.pdf',
+      'cd096\\ts096060.pdf',
+      'cd096\\ts096061.pdf',
+      'cd096\\ts096062.pdf',
+      'cd096\\ts096068.pdf',
+      'cd096\\ts096070.pdf',
+      'cd096\\ts096095.pdf',
+  ]
+  files.forEach(function(file){
+    console.log('file:', file)
+    file = "d:\\all\\"+file
+    console.log(msg.getpdfoutlines(file))
+    console.log('---------')
+  })
+}, 2000)*/
 
 
 // catch 404 and forward to error handler

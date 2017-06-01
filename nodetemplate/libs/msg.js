@@ -13,24 +13,44 @@ function getpdfoutlines(srcfile) {
         //去掉换行符
         var length = stdout.length,
             ch
-        if(length>=2){
+        if (length >= 2) {
             //if(stdout.charAt(length-2)=='\r' && stdout.charAt(length-1)=='\n')console.log('\\r\\n')
-            ch = stdout.charAt(stdout.length-2)
-            if(ch == '\r' || ch=='\n'){
-                stdout = stdout.slice(0,length-2)
-            } else{
-                ch = stdout.charAt(length-1)
-                if(ch == '\r' || ch=='\n'){
-                    console.log('1:',stdout.slice(length-1,1))
-                    stdout = stdout.slice(0,length-1)
+            ch = stdout.charAt(stdout.length - 2)
+            if (ch == '\r' || ch == '\n') {
+                stdout = stdout.slice(0, length - 2)
+            } else {
+                ch = stdout.charAt(length - 1)
+                if (ch == '\r' || ch == '\n') {
+                    console.log('1:', stdout.slice(length - 1, 1))
+                    stdout = stdout.slice(0, length - 1)
                 }
             }
-        }else if(length==1){
+        } else if (length == 1) {
             ch = stdout.charAt(0)
-            if(ch == '\r' || ch=='\n'){
-                console.log('只有换行',ch)
+            if (ch == '\r' || ch == '\n') {
+                console.log('只有换行', ch)
                 stdout = ''
             }
+        }
+
+        /**
+         * ASCII 码
+         * &#13; \r
+         * &#10; \n
+         * &#40; )
+         * &#41; (
+         */
+        var asciicodes = [
+            [/&#13;/g, ''],
+            [/&#10;/g, ''],
+            [/&#40;/g, '('],
+            [/&#41;/g, ')'],
+            [/&#183;/g, '·'],
+        ]
+
+        stdout = stdout.toString()
+        for (var i = 0; i < asciicodes.length; i++) {
+            stdout = stdout.replace(asciicodes[i][0], asciicodes[i][1])
         }
 
         return stdout
@@ -102,3 +122,4 @@ function updateoutlines(tablename) {
 }
 
 exports.updateoutlines = updateoutlines
+exports.getpdfoutlines = getpdfoutlines

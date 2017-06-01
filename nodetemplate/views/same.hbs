@@ -1,0 +1,9 @@
+<label style="position: fixed; right: 20px;"><input type="checkbox" checked id="id-link">Link</label>
+{{#each rows}}
+    序号={{@index}} 数量={{count}}
+    书名=<a href="#" onclick="same('{{{title}}}')">{{{title}}}</a>
+    路径=[{{#each extpaths}}
+        <input type="button" onclick="openfile('{{md5key}}',this)" value="{{path}}">
+    {{/each}}]<br>
+{{/each}}
+

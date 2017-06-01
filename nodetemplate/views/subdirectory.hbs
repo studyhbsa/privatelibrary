@@ -1,6 +1,9 @@
 <label style="position: fixed; right: 20px;"><input type="checkbox" checked id="id-link">Link</label>
 {{#each rows}}
     序号={{@index}} 大纲={{dagang}} 大小={{size}}
-    <a href="#" onclick="openoutlines('{{md5key}}')">打开目录</a>
-    文件名=<a href="#" onclick="openfile('{{md5key}}')">{{path}}</a><br>
+    文件名=<a href="#" onclick="openfile('{{md5key}}')">{{path}}</a>
+    <label><input type="checkbox" readonly="readonly" {{#if nouse}}checked{{/if}}>排除</label>
+    <a href="#" onclick="openoutlines('{{md5key}}')">
+        {{#if bookname}}{{{bookname}}}{{else}}无目录{{/if}}
+    </a><br>
 {{/each}}

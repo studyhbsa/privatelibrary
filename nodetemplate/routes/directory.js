@@ -10,7 +10,16 @@ router.get('/:sub', sub)
 
 function sub(req, res, next){
     var db = process.db
-    db.all('select md5key,path,size,json_valid(msg) as dagang from book where path like \''+req.params.sub+'%\' order by id', function (err, rows) {
+    var sql = [
+        'select md5key,path,size,json_valid(msg) as dagang',
+        ' ,case json_valid(msg) when 1 then json_extract(msg,\'$.outlines[0].t\') else \'\' end as bookname',
+        ' ,msgone is not null as nouse',
+        ' from book',
+        ' where path like \''+req.params.sub+'%\'',
+    //    ' where path like \''+req.params.sub+'%\' and dagang=0 and msgone is null',
+        ' order by id'
+    ].join('')
+    db.all(sql, function (err, rows) {
         if (err) {
             console.warn(err)
         }
@@ -34,7 +43,12 @@ function sub(req, res, next){
 
 function all(req, res, next) {
     var db = process.db
-    db.all('select path from book order by id', function (err, rows) {
+    var sql = [
+        'select path from book',
+    //    ' where json_valid(msg)=0 and msgone is null',
+        ' order by path'
+    ].join('')
+    db.all(sql, function (err, rows) {
         if (err) {
             console.warn(err)
         }

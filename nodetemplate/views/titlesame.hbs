@@ -1,0 +1,6 @@
+<label style="position: fixed; right: 20px;"><input type="checkbox" checked id="id-link">Link</label>
+{{#each rows}}
+    序号={{@index}} 大小={{size}}
+    <a href="#" onclick="openoutlines('{{md5key}}')">打开目录</a>
+    文件名=<a href="#" onclick="openfile('{{md5key}}')">{{path}}</a><br>
+{{/each}}

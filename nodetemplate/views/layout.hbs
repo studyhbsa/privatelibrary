@@ -7,6 +7,7 @@
   <body>
     {{{body}}}
   <script>
+
       function file(key, page) {
           //window.open("/openfile?filename=" + id, "_blank", "top=100,left=100,width=800,height=600,menubar=no,scrollbars=no,toolbar=no,status=no,location=no");
           //window.open("/openfile?filename=" + id+"#page=2", "_blank")
@@ -21,6 +22,15 @@
               var win = window.open('/directory/'+sub, sub)
           }
       }
+      function same(sub){
+          var link = document.getElementById('id-link');
+          sub = '['+sub+']'
+          if(link.checked === true){
+              window.location.href = '/same/'+sub
+          }else{
+              var win = window.open('/same/'+sub, sub)
+          }
+      }
       function openoutlines(key){
           var link = document.getElementById('id-link');
           if(link.checked === true){
@@ -29,7 +39,7 @@
               var win = window.open('/outlines/'+key, key)
           }
       }
-      function openfile(key){
+      function openfile(key, event){
           var link = document.getElementById('id-link');
           if(link.checked === true){
               window.location.href = '/file/'+key
