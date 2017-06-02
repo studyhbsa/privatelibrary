@@ -5,9 +5,15 @@
   "dbfile": "./bin/book.db",
   "data": {
     "fileroot": "d:\\all",
+    "customfold": "custom",
     "replace": "&#183;·&#40;(&#41;)&#10;\n&#13;\r",
     "pagecount": "15",
-    "canopen": ["pdf","jpg","png","ico"]
+    "canopen": [
+      "pdf",
+      "jpg",
+      "png",
+      "ico"
+    ]
   },
   "scripts": {
     "start": "node ./bin/www"
@@ -20,6 +26,7 @@
     "hbs": "~4.0.0",
     "lodash": "^4.17.4",
     "morgan": "~1.7.0",
+    "multer": "^1.3.0",
     "serve-favicon": "~2.3.0",
     "sqlite3": "^3.1.8"
   }

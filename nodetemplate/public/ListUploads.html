@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览已上传文件</title>
+</head>
+<body>
+<div id="container"></div>
+<script src="javascripts/jquery-1.8.3.min.js"></script>
+<script src="javascripts/handlebars.min.js"></script>
+<script id="obj-template" type="text/x-handlebars-template">
+<pre>
+ count = {{this.length}}
+    {{#each this}}
+【{{@index}}】{{#each this}}{{#if @last}}<a href="#" onclick="openfile(this)">{{{this}}}</a>{{else}}{{{this}}} {{/if}}{{/each}}</a>
+    {{/each}}
+</pre>
+</script>
+<script>
+
+    $.get(
+            'getdata/listuploads',
+            //{id:123,name:'listuploads' },
+            null,
+            showdata
+    )
+    function showdata(data, state){
+        var source   = $("#obj-template").html();
+        var template = Handlebars.compile(source);
+        if(data && data.rows){
+            $('#container').html(template(data.rows))
+        }else{
+            $('#container').html('<pre>'+JSON.stringify(data)+'</pre>')
+        }
+    }
+    function openfile(obj) {
+        console.log(obj)
+        var text = obj.previousSibling.textContent
+        text = text.slice(0, text.length - 1)
+        var beg = text.lastIndexOf(' ')
+        var id = text.slice(beg+1, text.length)
+        //window.open("/openfile?filename=" + id, "_blank", "top=100,left=100,width=800,height=600,menubar=no,scrollbars=no,toolbar=no,status=no,location=no");
+        window.open("/openfile?filename=" + id+"#page=2", "_blank")
+    }
+</script>
+</body>
+</html>

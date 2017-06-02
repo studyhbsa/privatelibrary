@@ -1,0 +1,17 @@
+<pre>
+obj = {
+    {{#each obj}}
+        {{#if @last}}
+  {{{@key}}}: '{{{this}}}'
+        {{else}}
+  {{{@key}}}: '{{{this}}}',
+        {{/if}}
+    {{/each}}
+}
+</pre>
+<script>
+    window.open(location.origin+ '/outlines/{{obj.filename}}','{{obj.filename}}')
+</script>
+
+
+

@@ -19,6 +19,7 @@ var outlines = require('./routes/outlines')
 var update = require('./routes/update')
 var directory = require('./routes/directory')
 var same = require('./routes/same')
+var file_upload = require('./routes/file_upload')
 
 
 var app = express();
@@ -42,6 +43,7 @@ app.use('/outlines', outlines)
 app.use('/update', update)
 app.use('/directory', directory)
 app.use('/same', same)
+app.use('/file_upload', file_upload);
 
 
 app.use('/', routes);

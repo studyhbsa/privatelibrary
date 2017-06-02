@@ -41,6 +41,7 @@ function getpdfoutlines(srcfile) {
          * &#41; (
          */
         var asciicodes = [
+            [/&#0;/g, ''],  //null
             [/&#13;/g, ''],
             [/&#10;/g, ''],
             [/&#40;/g, '('],

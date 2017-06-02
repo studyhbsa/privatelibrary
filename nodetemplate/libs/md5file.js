@@ -74,4 +74,5 @@ function walkSync(fileordirectory, floor, handleFile) {
 
 exports.arrmd5obj = arrmd5obj
 exports.tablemd5obj = tablemd5obj
+exports.getmd5key = getmd5key
 
